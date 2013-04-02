@@ -68,6 +68,7 @@ if [ "${checksum_packages}" != "no" ] && \
 	{
 		echo "All/pkg_summary.bz2"
 		echo "All/pkg_summary.gz"
-		sed 's|^\(.*\)$|All/\1.tgz|' < ${loc}/success
+		ls -1 All/*.tgz 2>/dev/null
+		#sed 's|^\(.*\)$|All/\1.tgz|' < ${loc}/success
 	} | sort | xargs ${digest} SHA512 | ${bzip2} -c > SHA512.bz2
 fi
