@@ -208,6 +208,7 @@ _INSTALL_ALL_TARGETS+=		pre-install
 _INSTALL_ALL_TARGETS+=		do-install
 _INSTALL_ALL_TARGETS+=		post-install
 .endif
+_INSTALL_ALL_TARGETS+=		post-install-smf
 _INSTALL_ALL_TARGETS+=		plist
 .if !empty(STRIP_DEBUG:M[Yy][Ee][Ss])
 _INSTALL_ALL_TARGETS+=		install-strip-debug
@@ -376,6 +377,20 @@ ${tgt}-multi:
 	@${MAKE} ${MAKE_FLAGS} ABI=${_abi_} PATH=${WRAPPER_DIR}/bin${BINARCHSUFFIX.${_abi_}}:${TOOLS_DIR}/bin${BINARCHSUFFIX.${_abi_}}:${PATH} WRKSRC=${WRKSRC}-${_abi_} ${tgt}-multiarch-hook
 .    endfor
 .  endfor
+.endif
+
+######################################################################
+### post-install-smf (PUBLIC, override)
+######################################################################
+### post-install-smf is a special target to add SMF manifest and
+### (optionally) method file to a package, to support SMF on SunOS
+### operating systems
+###
+.PHONY: post-install-smf
+
+.if !target(post-install-smf)
+post-install-smf:
+	@${DO_NADA}
 .endif
 
 ######################################################################

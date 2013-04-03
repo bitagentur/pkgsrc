@@ -325,6 +325,10 @@ OVERRIDE_DIRDEPTH?=	2
 #
 .include "alternatives.mk"
 
+# Handle SMF
+#
+.include "smf.mk"
+
 # Define SMART_MESSAGES in /etc/mk.conf for messages giving the tree
 # of dependencies for building, and the current target.
 _PKGSRC_IN?=		===${SMART_MESSAGES:D> ${.TARGET} [${PKGNAME}${_PKGSRC_DEPS}] ===}
