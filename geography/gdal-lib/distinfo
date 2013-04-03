@@ -4,3 +4,4 @@ SHA1 (gdal-1.9.1.tar.gz) = c1eae556398ff7b9332afe9d3022dcd931130808
 RMD160 (gdal-1.9.1.tar.gz) = c4d77975b753fae75c634662e5e572fc2308456e
 Size (gdal-1.9.1.tar.gz) = 9487505 bytes
 SHA1 (patch-frmts_netcdf_netcdfdataset.cpp) = e7d67936e13177284aa07ac12e534477a1cc26d9
+SHA1 (patch-frmts_netcdf_netcdfdataset.cpp) = c77c025a69a0eb39ac3bfd700b56f3e7620fe886

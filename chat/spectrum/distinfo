@@ -3,7 +3,7 @@ $NetBSD: distinfo,v 1.5 2012/12/21 00:10:59 schnoebe Exp $
 SHA1 (spectrum-1.4.8.tar.gz) = 9323f8f89eb1f84e36e1d64845741cbebbf0d249
 RMD160 (spectrum-1.4.8.tar.gz) = 859c1d0f6f1c4d535bbada13c1c11f2b4550805a
 Size (spectrum-1.4.8.tar.gz) = 239725 bytes
-SHA1 (patch-CMakeLists.txt) = 9f7ce54e69ec95cea4aa3eff8d80ae31c8a80a0e
+SHA1 (patch-CMakeLists.txt) = 41ee185d2c8e0d53dd090296f7f1a68c45e0758a
 SHA1 (patch-man_spectrumctl.8) = 31196aba714f6fca26c20513e677a62ec39fefb5
 SHA1 (patch-spectrumctl_spectrum_env.py) = 0c266de23d0af8d317fcd4efdfec64bb85714de3
 SHA1 (patch-spectrumctl_spectrumctl.py) = 56166fa6477a3dba56b30501f2112cd6d21db40f

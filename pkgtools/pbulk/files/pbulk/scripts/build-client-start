@@ -1,7 +1,7 @@
 #!@SH@
 # $NetBSD: build-client-start,v 1.2 2008/09/16 18:21:30 joerg Exp $
 
-. @PBULK_CONFIG@
+. ${PBULK_CONF:-@PBULK_CONFIG@}
 
 set -e
 
@@ -12,5 +12,11 @@ if [ "${config_version}" != "@PBULK_CONFIG_VERSION@" ]; then
 fi
 
 for client in ${build_clients}; do
-	ssh $client "${pbuild} -c ${master_port_build} -b ${pbuild_script}" &
+	if [ -n "${chroot_create}" -a \
+	     -n "${chroot_delete}" -a \
+	     -n "${chroot_dir}" ]; then
+		ssh $client "${chroot_create} ${chroot_dir}; PBULK_CONF=${PBULK_CONF} /usr/sbin/chroot ${chroot_dir} /bin/bash -c \"${pbuild} -c ${master_port_build} -b ${pbuild_script}\"; ${chroot_delete} ${chroot_dir}" &
+	else
+		ssh $client "PBULK_CONF=${PBULK_CONF} ${pbuild} -c ${master_port_build} -b ${pbuild_script}" &
+	fi
 done

@@ -10,9 +10,11 @@ HOMEPAGE=	http://www.audiocoding.com/
 COMMENT=	AAC decoding library
 
 LICENSE=	gnu-gpl-v2
-RESTRICTED=	Dolby doesn't allow binary distributions
-NO_BIN_ON_FTP=	${RESTRICTED}
-NO_BIN_ON_CDROM=${RESTRICTED}
+
+# Disable these, for the limitation is only on sale of de/en-coders
+# RESTRICTED=	Dolby doesn't allow binary distributions
+# NO_BIN_ON_FTP=	${RESTRICTED}
+# NO_BIN_ON_CDROM=${RESTRICTED}
 
 USE_TOOLS+=	autoconf automake autoreconf gmake
 USE_LANGUAGES=	c c++

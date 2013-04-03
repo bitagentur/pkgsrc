@@ -23,6 +23,8 @@ MAKE_JOBS_SAFE=		NO
 CHECK_PERMS=		no
 .endif
 
+BUILDLINK_TRANSFORM+=	rm:-O[23]
+
 INSTALLATION_DIRS=	include lib ${PKGMANDIR}/cat3 ${PKGMANDIR}/man3
 
 BUILD_TARGET=	depend all

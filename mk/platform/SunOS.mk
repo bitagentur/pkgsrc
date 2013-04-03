@@ -45,6 +45,13 @@ _OPSYS_EMULDIR.solaris=		# empty
 _OPSYS_EMULDIR.solaris32=	# empty
 _OPSYS_EMULDIR.sunos=		# empty
 
+.if (${MACHINE_ARCH} == "x86_64" || ${MACHINE_ARCH} == "sparc64") || \
+    (defined(ABI) && ${ABI} == 64)
+_OPSYS_SYSTEM_RPATH?=	/lib/64:/usr/lib/64
+.else
+_OPSYS_SYSTEM_RPATH?=	/lib:/usr/lib
+.endif
+
 .if exists(/usr/include/netinet/ip6.h)
 _OPSYS_HAS_INET6=	yes		# IPv6 is standard
 .else
