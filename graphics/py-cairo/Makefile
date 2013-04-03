@@ -16,9 +16,12 @@ WRKSRC=			${WRKDIR}/${DISTNAME:S/py2/py/}
 
 USE_PKGLOCALEDIR=	yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config
 GNU_CONFIGURE=		yes
 CONFIGURE_ENV+=		PYTHON=${PYTHONBIN:Q}
+
+MULTIARCH_DIRS.lib=	# manually defined in PLIST
 
 PKGCONFIG_OVERRIDE+=	pycairo.pc.in
 PY_PATCHPLIST=		yes

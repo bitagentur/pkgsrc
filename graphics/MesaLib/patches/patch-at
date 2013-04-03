@@ -28,7 +28,7 @@ $NetBSD: patch-at,v 1.2 2009/06/05 11:10:35 wiz Exp $
 +	$(LIBTOOL) --mode=link $(CC) \
 +		-o $(TOP)/$(LIB_DIR)/$(GL_LIB_NAME:.so=.la) \
 +		$(LDFLAGS) -version-info 1:2 $(GL_LIB_DEPS) \
-+		-rpath $(PREFIX)/lib $(OBJECTS:.o=.lo)
++		-rpath $(PREFIX)/lib$(LIBARCHSUFFIX) $(OBJECTS:.o=.lo)
  
  
  depend: $(SOURCES) $(MESA_GLAPI_SOURCES) $(MESA_ASM_API) Makefile

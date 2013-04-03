@@ -1,14 +1,14 @@
 $NetBSD: patch-aa,v 1.13 2011/03/18 12:42:24 adam Exp $
 
---- make/linux/Makefile.orig	2011-03-18 12:15:07.000000000 +0000
-+++ make/linux/Makefile
-@@ -16,16 +16,16 @@ prefix=/boot/home/config
+--- make/linux/Makefile.orig	2013-01-07 11:46:26.287130087 +0000
++++ make/linux/Makefile	2013-01-07 11:50:37.505027774 +0000
+@@ -16,16 +16,16 @@
  else
  prefix=/usr/local
  endif
 -libdir=$(prefix)/lib
 -includedir=$(prefix)/include/ebml
-+libdir=$(DESTDIR)$(PREFIX)/lib
++libdir=$(DESTDIR)$(PREFIX)/lib${LIBARCHSUFFIX}
 +includedir=$(DESTDIR)$(PREFIX)/include/ebml
  
  # Programs
@@ -25,7 +25,7 @@ $NetBSD: patch-aa,v 1.13 2011/03/18 12:42:24 adam Exp $
  INSTALL_OPTS = -m 644
  INSTALL_OPTS_LIB = -m 644
  INSTALL_DIR_OPTS = -m 755
-@@ -48,7 +48,7 @@ LIBS=
+@@ -48,7 +48,7 @@
  
  # Names
  LIBRARY=libebml.a
@@ -34,7 +34,7 @@ $NetBSD: patch-aa,v 1.13 2011/03/18 12:42:24 adam Exp $
  LIBRARY_SO_VER=libebml.so.3
  
  # source-files
-@@ -84,16 +84,14 @@ lib:
+@@ -84,16 +84,14 @@
  	$(CXX) -c $(COMPILEFLAGS) -o $@ $<
  
  %.lo: %$(EXTENSION)
@@ -49,11 +49,11 @@ $NetBSD: patch-aa,v 1.13 2011/03/18 12:42:24 adam Exp $
 -	$(CXX) -shared -Wl,-soname,$(LIBRARY_SO_VER) -o $(LIBRARY_SO_VER) $(objects_so)
 -	rm -f $(LIBRARY_SO)
 -	ln -s $(LIBRARY_SO_VER) $(LIBRARY_SO)
-+	$(LIBTOOL) --mode=link $(CXX) -o $(LIBRARY_SO) $(objects_so) -rpath $(PREFIX)/lib -version-info 0
++	$(LIBTOOL) --mode=link $(CXX) -o $(LIBRARY_SO) $(objects_so) -rpath $(PREFIX)/lib${LIBARCHSUFFIX} -version-info 0
  
  clean:
  	rm -f $(objects) $(objects_so)
-@@ -137,8 +135,7 @@ install_staticlib: $(LIBRARY)
+@@ -137,8 +135,7 @@
  
  install_sharedlib: $(LIBRARY_SO)
  	$(INSTALL) $(INSTALL_DIR_OPTS) -d $(libdir)

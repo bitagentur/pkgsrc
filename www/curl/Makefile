@@ -19,6 +19,7 @@ PKG_INSTALLATION_TYPES=	overwrite pkgviews
 BUILD_DEFS+=	IPV6_READY
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.openssl}
 CONFIGURE_ARGS+=	--with-ca-path=${SSLCERTS}
@@ -40,6 +41,11 @@ PRIVILEGED_STAGES+=	clean
 
 .include "options.mk"
 
+do-install-multiarch-hook:
+	${MKDIR} ${DESTDIR}/${PREFIX}/include/curl/${INCARCHSUFFIX}
+	${MV} ${DESTDIR}/${PREFIX}/include/curl/curlbuild.h		\
+		${DESTDIR}/${PREFIX}/include/curl/${INCARCHSUFFIX}
+
 post-install:
 	for _f in MANUAL TheArtOfHttpScripting FAQ			\
 		curl-config.pdf curl.pdf; do				\
@@ -51,6 +57,10 @@ post-install:
 		${INSTALL_DATA} $${_f} 					\
 			${DESTDIR}${PREFIX}/share/examples/curl;	\
 	done
+.if !empty(MULTIARCH:M[Yy][Ee][Ss])
+	${INSTALL_DATA} ${FILESDIR}/curlbuild.h				\
+		${DESTDIR}/${PREFIX}/include/curl
+.endif
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"

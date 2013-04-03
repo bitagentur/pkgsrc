@@ -1,14 +1,14 @@
 $NetBSD: patch-ac,v 1.12 2011/10/07 19:04:46 drochner Exp $
 
---- make/linux/Makefile.orig	2011-10-06 14:24:10.000000000 +0000
-+++ make/linux/Makefile
-@@ -16,16 +16,16 @@ prefix=/boot/home/config
+--- make/linux/Makefile.orig	2013-01-11 09:30:31.305843189 +0000
++++ make/linux/Makefile	2013-01-11 09:31:55.493003719 +0000
+@@ -16,16 +16,16 @@
  else
  prefix=/usr/local
  endif
 -libdir=$(prefix)/lib
 -includedir=$(prefix)/include/matroska
-+libdir=$(PREFIX)/lib
++libdir=$(PREFIX)/lib${LIBARCHSUFFIX}
 +includedir=$(PREFIX)/include/matroska
  
  # Programs
@@ -25,7 +25,7 @@ $NetBSD: patch-ac,v 1.12 2011/10/07 19:04:46 drochner Exp $
  INSTALL_OPTS = -m 644
  INSTALL_OPTS_LIB = -m 644
  INSTALL_DIR_OPTS = -m 755
-@@ -53,7 +53,7 @@ MUX_LIBS=-lmatroska -lebml $(LIBICONV)
+@@ -53,7 +53,7 @@
  
  # Names
  LIBRARY=libmatroska.a
@@ -34,7 +34,7 @@ $NetBSD: patch-ac,v 1.12 2011/10/07 19:04:46 drochner Exp $
  LIBRARY_SO_VER=libmatroska.so.5
  
  # source-files
-@@ -92,16 +92,14 @@ lib:
+@@ -92,16 +92,14 @@
  	$(CXX) -c $(COMPILEFLAGS) -o $@ $<
  
  %.lo: %$(EXTENSION)
@@ -49,11 +49,11 @@ $NetBSD: patch-ac,v 1.12 2011/10/07 19:04:46 drochner Exp $
 -	$(CXX) -shared -Wl,-soname,$(LIBRARY_SO_VER) -o $(LIBRARY_SO_VER) $(objects_so) -lebml
 -	rm -f $(LIBRARY_SO)
 -	ln -s $(LIBRARY_SO_VER) $(LIBRARY_SO)
-+	$(LIBTOOL) --mode=link $(CXX) -o $(LIBRARY_SO) $(objects_so) -lebml -rpath $(PREFIX)/lib -version-info 0
++	$(LIBTOOL) --mode=link $(CXX) -o $(LIBRARY_SO) $(objects_so) -lebml -rpath $(PREFIX)/lib${LIBARCHSUFFIX} -version-info 0
  
  clean:	cleantest
  	rm -f $(objects) $(objects_so)
-@@ -153,23 +151,22 @@ install: install_staticlib install_share
+@@ -153,23 +151,22 @@
  endif
  
  install_headers:

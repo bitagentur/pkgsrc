@@ -15,9 +15,12 @@ LICENSE=		gnu-lgpl-v2.1
 
 USE_PKGLOCALEDIR=	yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		pkg-config gmake
 GNU_CONFIGURE=		yes
 CONFIGURE_ENV+=		PYTHON=${PYTHONBIN:Q}
+
+MULTIARCH_DIRS.lib=	lib ${PYSITELIB}
 
 PATCHDIR=		${.CURDIR}/../../devel/py-gobject/patches
 DISTINFO_FILE=		${.CURDIR}/../../devel/py-gobject/distinfo

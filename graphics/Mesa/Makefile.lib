@@ -18,6 +18,7 @@ PKG_INSTALLATION_TYPES=	overwrite pkgviews
 
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 LIBTOOL=		${PKG_SHLIBTOOL}
 USE_TOOLS+=		gmake pkg-config
 

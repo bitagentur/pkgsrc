@@ -1,8 +1,19 @@
 $NetBSD: patch-au,v 1.2 2011/06/17 00:59:25 reed Exp $
 
---- Makefile.pre.in.orig	2011-06-11 11:48:51.000000000 -0400
-+++ Makefile.pre.in	2011-06-16 20:47:35.000000000 -0400
-@@ -602,7 +602,7 @@
+Support multiarch.
+
+--- Makefile.pre.in.orig	2012-04-09 23:25:36.000000000 +0000
++++ Makefile.pre.in	2012-12-13 12:23:22.377416072 +0000
+@@ -110,7 +110,7 @@
+ SO=		@SO@
+ LDSHARED=	@LDSHARED@
+ BLDSHARED=	@BLDSHARED@
+-DESTSHARED=	$(BINLIBDEST)/lib-dynload
++DESTSHARED=	$(BINLIBDEST)/lib-dynload@LIBARCHSUFFIX@
+ 
+ # Executable suffix (.exe on Windows and Mac OS X)
+ EXE=		@EXEEXT@
+@@ -603,7 +603,7 @@
  $(OPCODETARGETS_H): $(OPCODETARGETGEN_FILES)
  	$(OPCODETARGETGEN) $(OPCODETARGETS_H)
  
@@ -11,13 +22,33 @@ $NetBSD: patch-au,v 1.2 2011/06/17 00:59:25 reed Exp $
  
  Python/formatter_unicode.o: $(srcdir)/Python/formatter_unicode.c \
  				$(BYTESTR_DEPS) \
-@@ -807,7 +807,8 @@
- 				(cd $(DESTDIR)$(LIBDIR); $(LN) -sf $(INSTSONAME) $(LDLIBRARY)) \
+@@ -803,12 +803,13 @@
+ 		if test -n "$(DLLLIBRARY)" ; then \
+ 			$(INSTALL_SHARED) $(DLLLIBRARY) $(DESTDIR)$(BINDIR); \
+ 		else \
+-			$(INSTALL_SHARED) $(LDLIBRARY) $(DESTDIR)$(LIBDIR)/$(INSTSONAME); \
++			$(INSTALL_SHARED) $(LDLIBRARY) $(DESTDIR)$(LIBDIR)@LIBARCHSUFFIX@/$(INSTSONAME); \
+ 			if test $(LDLIBRARY) != $(INSTSONAME); then \
+-				(cd $(DESTDIR)$(LIBDIR); $(LN) -sf $(INSTSONAME) $(LDLIBRARY)) \
++				(cd $(DESTDIR)$(LIBDIR)@LIBARCHSUFFIX@; $(LN) -sf $(INSTSONAME) $(LDLIBRARY)) \
  			fi \
  		fi; \
 -	else	true; \
 +	elif test -f $(INSTSONAME); then \
-+		$(INSTALL_SHARED) $(INSTSONAME) $(DESTDIR)$(LIBDIR); \
++		$(INSTALL_SHARED) $(INSTSONAME) $(DESTDIR)$(LIBDIR)@LIBARCHSUFFIX@; \
  	fi
  
  bininstall: altbininstall
+@@ -966,10 +967,10 @@
+ 
+ # Install the library and miscellaneous stuff needed for extending/embedding
+ # This goes into $(exec_prefix)
+-LIBPL=		$(LIBP)/config
++LIBPL=		$(LIBP)/config@LIBARCHSUFFIX@
+ 
+ # pkgconfig directory
+-LIBPC=		$(LIBDIR)/pkgconfig
++LIBPC=		$(LIBDIR)@LIBARCHSUFFIX@/pkgconfig
+ 
+ libainstall:	all
+ 	@for i in $(LIBDIR) $(LIBP) $(LIBPL) $(LIBPC); \

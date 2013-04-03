@@ -28,6 +28,7 @@ CONFLICTS+=	LPRng-[0-9]* LPRng-core-[0-9]*
 WRKSRC=			${WRKDIR}/cups-${BASE_VERS}
 UNLIMIT_RESOURCES=	datasize memorysize
 USE_LANGUAGES=		c c++	# pdftops is a C++ application
+USE_MULTIARCH=		bin lib
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		aclocal autoconf automake gmake
 USE_LIBTOOL=		yes
@@ -135,7 +136,7 @@ SUBST_STAGE.paths=	post-patch
 SUBST_CLASSES+=		rpathfix
 SUBST_FILES.rpathfix=	cups-config.in
 SUBST_MESSAGE.rpathfix=	Adding rpath to cups-config.
-SUBST_SED.rpathfix=	-e 's|@EXPORT_LDFLAGS@|${COMPILER_RPATH_FLAG}${PREFIX}/lib|g'
+SUBST_SED.rpathfix=	-e 's|@EXPORT_LDFLAGS@|${COMPILER_RPATH_FLAG}${PREFIX}/lib${LIBARCHSUFFIX}|g'
 SUBST_STAGE.rpathfix=	post-patch
 
 .if !empty(OPSYS:MNetBSD) && !empty(MACHINE_ARCH:Mpowerpc)

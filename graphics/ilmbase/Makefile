@@ -13,6 +13,7 @@ LICENSE=	modified-bsd
 USE_TOOLS+=		gmake
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 TEST_TARGET=		check
 LIBS.SunOS=		-lm

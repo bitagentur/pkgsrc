@@ -48,7 +48,7 @@ $NetBSD: patch-ab,v 1.19 2012/02/16 18:56:23 hans Exp $
 +$(TOP)/$(LIB_DIR)/$(GLU_LIB_NAME): $(OBJECTS) glu.exports
 +	$(LIBTOOL) --mode=link $(CXX) \
 +		-o $(TOP)/$(LIB_DIR)/$(GLU_LIB_NAME:.so=.la) $(LDFLAGS) \
-+		-rpath $(PREFIX)/lib $(GLU_LIB_DEPS) $(OBJECTS:.o=.lo) \
++		-rpath $(PREFIX)/lib$(LIBARCHSUFFIX) $(GLU_LIB_DEPS) $(OBJECTS:.o=.lo) \
 +		-version-info $(GLU_MAJOR):$(GLU_MINOR):$(GLU_TINY) \
 +		-export-symbols glu.exports
  

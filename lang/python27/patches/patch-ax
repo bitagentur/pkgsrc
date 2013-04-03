@@ -2,9 +2,45 @@ $NetBSD: patch-ax,v 1.3 2012/04/13 18:47:31 adam Exp $
 
 chop "-RELEASE" or "-DEVELOPMENT" from release for DragonFly.
 
---- Lib/sysconfig.py.orig	2011-06-11 15:46:25.000000000 +0000
-+++ Lib/sysconfig.py
-@@ -685,6 +685,8 @@ def get_platform():
+Support multiarch.
+
+--- Lib/sysconfig.py.orig	Mon Apr  9 23:07:31 2012
++++ Lib/sysconfig.py	Thu Sep 27 11:50:15 2012
+@@ -9,8 +9,8 @@
+     'posix_prefix': {
+         'stdlib': '{base}/lib/python{py_version_short}',
+         'platstdlib': '{platbase}/lib/python{py_version_short}',
+-        'purelib': '{base}/lib/python{py_version_short}/site-packages',
+-        'platlib': '{platbase}/lib/python{py_version_short}/site-packages',
++        'purelib': '{base}/lib/python{py_version_short}/site-packages{libarchsuffix}',
++        'platlib': '{platbase}/lib/python{py_version_short}/site-packages{libarchsuffix}',
+         'include': '{base}/include/python{py_version_short}',
+         'platinclude': '{platbase}/include/python{py_version_short}',
+         'scripts': '{base}/bin',
+@@ -272,7 +272,10 @@
+ def _get_makefile_filename():
+     if _PYTHON_BUILD:
+         return os.path.join(_PROJECT_BASE, "Makefile")
+-    return os.path.join(get_path('platstdlib'), "config", "Makefile")
++    if sys.maxsize > 2**32:
++        return os.path.join(get_path('platstdlib'), "config", "@LIBARCHSUFFIX.64@".lstrip('/'), "Makefile")
++    else:
++        return os.path.join(get_path('platstdlib'), "config", "@LIBARCHSUFFIX.32@".lstrip('/'), "Makefile")
+ 
+ 
+ def _init_posix(vars):
+@@ -413,6 +416,10 @@
+         _CONFIG_VARS['base'] = _PREFIX
+         _CONFIG_VARS['platbase'] = _EXEC_PREFIX
+         _CONFIG_VARS['projectbase'] = _PROJECT_BASE
++        if sys.maxsize > 2**32:
++            _CONFIG_VARS['libarchsuffix'] = "@LIBARCHSUFFIX.64@"
++        else:
++            _CONFIG_VARS['libarchsuffix'] = "@LIBARCHSUFFIX.32@"
+ 
+         if os.name in ('nt', 'os2'):
+             _init_non_posix(_CONFIG_VARS)
+@@ -685,6 +692,8 @@
                      machine = 'ppc64'
                  else:
                      machine = 'ppc'

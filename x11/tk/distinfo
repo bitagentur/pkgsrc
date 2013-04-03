@@ -5,5 +5,5 @@ RMD160 (tk8.5.13-src.tar.gz) = f832c61d5006f9ddef93a63db9789d158b1d6202
 Size (tk8.5.13-src.tar.gz) = 4086092 bytes
 SHA1 (patch-macosx_tkMacOSXClipboard.c) = ac5a5de7c0e4259a347fcb7449d304e6edb91343
 SHA1 (patch-macosx_tkMacOSXDraw.c) = b241b7d70436340a5b55b7568da994465f45d2f8
-SHA1 (patch-unix_Makefile.in) = f3b1ee8ae65b1ee341ffc21aab2d7d37ffe26198
+SHA1 (patch-unix_Makefile.in) = 16e9a4f3ca161dc78d61e5f7dd1509305bff1f00
 SHA1 (patch-unix_configure) = 459a2688731fd86c4b88fb90aa2401949ff5b74f

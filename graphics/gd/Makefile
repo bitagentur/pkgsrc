@@ -18,6 +18,7 @@ MAKE_JOBS_SAFE=		no
 PKG_INSTALLATION_TYPES=	overwrite pkgviews
 
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 USE_TOOLS+=		perl:run
 GNU_CONFIGURE=		yes
 REPLACE_PERL+=		bdftogd

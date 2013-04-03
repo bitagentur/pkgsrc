@@ -12,6 +12,14 @@ $NetBSD: patch-ca,v 1.13 2013/01/24 18:23:51 apb Exp $
 
 --- Configure.orig	2012-10-26 02:44:14.000000000 +0000
 +++ Configure
+@@ -1332,6 +1332,7 @@
+ : Possible local library directories to search.
+ loclibpth="/usr/local/lib /opt/local/lib /usr/gnu/lib"
+ loclibpth="$loclibpth /opt/gnu/lib /usr/GNU/lib /opt/GNU/lib"
++loclibpth=''
+ 
+ : general looking path for locating libraries
+ glibpth="/lib /usr/lib $xlibpth"
 @@ -3099,7 +3099,7 @@ myuname=`$uname -a 2>/dev/null`
  $test -z "$myuname" && myuname=`hostname 2>/dev/null`
  # tr '[A-Z]' '[a-z]' would not work in EBCDIC
@@ -121,7 +129,7 @@ $NetBSD: patch-ca,v 1.13 2013/01/24 18:23:51 apb Exp $
  		;;
  	hpux*)
  		# hpux doesn't like the default, either.
-@@ -9377,6 +9391,13 @@ esac
+@@ -9410,6 +9425,13 @@
  : Check if we want perlio
  useperlio="$define"
  

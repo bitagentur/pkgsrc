@@ -371,7 +371,7 @@ BUILDLINK_LDFLAGS.${_pkg_}?=	# empty
 BUILDLINK_LIBS.${_pkg_}?=	# empty
 BUILDLINK_AUTO_DIRS.${_pkg_}?=	yes
 BUILDLINK_INCDIRS.${_pkg_}?=	include
-BUILDLINK_LIBDIRS.${_pkg_}?=	lib
+BUILDLINK_LIBDIRS.${_pkg_}?=	lib${LIBARCHSUFFIX}
 .  if !empty(BUILDLINK_DEPMETHOD.${_pkg_}:Mfull)
 BUILDLINK_RPATHDIRS.${_pkg_}?=	${BUILDLINK_LIBDIRS.${_pkg_}}
 .  else
@@ -473,8 +473,8 @@ BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${_dir_}
 #
 # Ensure that ${LOCALBASE}/lib is in the runtime library search path.
 #
-.if empty(BUILDLINK_LDFLAGS:M${COMPILER_RPATH_FLAG}${LOCALBASE}/lib)
-BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${LOCALBASE}/lib
+.if empty(BUILDLINK_LDFLAGS:M${COMPILER_RPATH_FLAG}${LOCALBASE}/lib${LIBARCHSUFFIX})
+BUILDLINK_LDFLAGS+=	${COMPILER_RPATH_FLAG}${LOCALBASE}/lib${LIBARCHSUFFIX}
 .endif
 #
 # Add the X11 library directory to the library search paths if the package
@@ -809,7 +809,7 @@ _BLNK_PASSTHRU_DIRS+=	${BUILDLINK_PASSTHRU_DIRS}
 # automatically added to all of the search paths.  Also strip out
 # ${LOCALBASE} and ${X11BASE} to prevent silly mistakes.
 #
-_BLNK_PASSTHRU_DIRS:=	${_BLNK_PASSTHRU_DIRS:N/usr:N/usr/lib:N/usr/include:N${LOCALBASE}:N${X11BASE}}
+_BLNK_PASSTHRU_DIRS:=	${_BLNK_PASSTHRU_DIRS:N/usr:N/usr/lib${LIBARCHSUFFIX}:N/usr/include:N${LOCALBASE}:N${X11BASE}}
 #
 # Allow all directories in the library subdirectories listed for each
 # package to be in the runtime library search path.
@@ -830,7 +830,7 @@ _BLNK_PASSTHRU_RPATHDIRS+=	${BUILDLINK_PREFIX.${_pkg_}}/${_dir_}
 # that wildcard dependencies work correctly when installing from binary
 # packages.
 #
-_BLNK_PASSTHRU_RPATHDIRS+=	${LOCALBASE}/lib
+_BLNK_PASSTHRU_RPATHDIRS+=	${LOCALBASE}/lib${LIBARCHSUFFIX}
 #
 # Allow ${X11BASE}/lib in the runtime library search path for USE_X11
 # packages so that X11 libraries can be found.
@@ -846,7 +846,7 @@ _BLNK_PASSTHRU_RPATHDIRS+=	${BUILDLINK_PASSTHRU_RPATHDIRS}
 # Strip out /usr/lib (and /usr/lib${LIBABISUFFIX}}) as it's always 
 # automatically in the runtime library search path.
 #
-_BLNK_PASSTHRU_RPATHDIRS:=	${_BLNK_PASSTHRU_RPATHDIRS:N/usr/lib:N/usr/lib${LIBABISUFFIX}}
+_BLNK_PASSTHRU_RPATHDIRS:=	${_BLNK_PASSTHRU_RPATHDIRS:N/usr/lib${LIBARCHSUFFIX}:N/usr/lib${LIBABISUFFIX}}
 
 _BLNK_MANGLE_DIRS=	# empty
 _BLNK_MANGLE_DIRS+=	${BUILDLINK_DIR}
@@ -857,6 +857,7 @@ _BLNK_MANGLE_DIRS+=	${WRKDIR}
 _BLNK_MANGLE_DIRS+=	${_BLNK_PASSTHRU_DIRS}
 _BLNK_MANGLE_DIRS+=	${_BLNK_PASSTHRU_RPATHDIRS}
 _BLNK_MANGLE_DIRS+=	/usr/include
+# XXX: if this breaks, revert to LIBARCHSUFFIX
 _BLNK_MANGLE_DIRS+=	/usr/lib${LIBABISUFFIX}
 .if ${PKG_INSTALLATION_TYPE} == "pkgviews"
 _BLNK_MANGLE_DIRS+=	${PREFIX}
@@ -886,6 +887,7 @@ _BLNK_PROTECT_DIRS+=	${WRKDIR}
 _BLNK_PROTECT_DIRS+=	${_BLNK_PASSTHRU_DIRS}
 
 _BLNK_UNPROTECT_DIRS+=	/usr/include
+# XXX: revert here too
 _BLNK_UNPROTECT_DIRS+=	/usr/lib${LIBABISUFFIX}
 .if ${PKG_INSTALLATION_TYPE} == "pkgviews"
 _BLNK_UNPROTECT_DIRS+=	${PREFIX}
@@ -956,7 +958,7 @@ _BLNK_TRANSFORM+=	mangle:/usr/lib/../libx32:/usr/libx32
 # aren't part of the normal header or library search paths).
 #
 _BLNK_TRANSFORM+=	opt-sub:-I/usr/include:-I${_BLNK_MANGLE_DIR./usr/include}
-_BLNK_TRANSFORM+=	opt-sub:-L/usr/lib:-L${_BLNK_MANGLE_DIR./usr/lib}
+_BLNK_TRANSFORM+=	opt-sub:-L/usr/lib${LIBARCHSUFFIX}:-L${_BLNK_MANGLE_DIR./usr/lib${LIBARCHSUFFIX}}
 #
 # Change any buildlink directories in runtime library search paths into
 # the canonical actual installed paths.
@@ -976,7 +978,7 @@ _BLNK_TRANSFORM+=	rpath:${_dir_}:${_BLNK_MANGLE_DIR.${_dir_}}
 # Protect /usr/lib/* as they're all allowed to be specified for the
 # runtime library search path.
 #
-_BLNK_TRANSFORM+=	sub-rpath:/usr/lib:${_BLNK_MANGLE_DIR./usr/lib}
+_BLNK_TRANSFORM+=	sub-rpath:/usr/lib${LIBARCHSUFFIX}:${_BLNK_MANGLE_DIR./usr/lib${LIBARCHSUFFIX}}
 #
 # Change references to ${DEPOTBASE}/<pkg> into ${LOCALBASE} so that
 # "overwrite" packages think headers and libraries for "pkgviews" packages
@@ -1100,7 +1102,7 @@ _WRAP_TRANSFORM.SHLIBTOOL=	${_WRAP_TRANSFORM.LIBTOOL}
 # before the system headers and libraries.
 #
 _BLNK_CPPFLAGS=			-I${BUILDLINK_DIR}/include
-_BLNK_LDFLAGS=			-L${BUILDLINK_DIR}/lib
+_BLNK_LDFLAGS=			-L${BUILDLINK_DIR}/lib${LIBARCHSUFFIX}
 _WRAP_EXTRA_ARGS.CC+=		${_BLNK_CPPFLAGS} ${_BLNK_LDFLAGS}
 _WRAP_EXTRA_ARGS.CXX+=		${_BLNK_CPPFLAGS} ${_BLNK_LDFLAGS}
 _WRAP_EXTRA_ARGS.CPP+=		${_BLNK_CPPFLAGS}

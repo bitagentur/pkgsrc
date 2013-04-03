@@ -12,6 +12,7 @@ LICENSE=		gnu-lgpl-v2.1
 
 GNU_CONFIGURE=		YES
 USE_LIBTOOL=		YES
+USE_MULTIARCH=		lib
 USE_PKGINSTALL=		YES
 USE_PKGLOCALEDIR=	YES
 USE_TOOLS+=		pkg-config gmake intltool msgfmt xgettext

@@ -12,6 +12,7 @@ LICENSE=	gnu-lgpl-v2
 
 USE_GNU_READLINE=	yes	# rl_on_new_line, rl_reset_line_state
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--datadir=${PREFIX}/share

@@ -12,6 +12,7 @@ LICENSE=	mit
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 USE_TOOLS+=	pkg-config perl
 
 PKGCONFIG_OVERRIDE+=	pixman-1.pc.in

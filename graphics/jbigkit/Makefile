@@ -12,6 +12,7 @@ LICENSE=	gnu-gpl-v2
 
 USE_TOOLS+=	gmake
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 
 WRKSRC=	${WRKDIR}/jbigkit
 
@@ -19,7 +20,7 @@ TEST_TARGET=	test
 
 MAKE_JOBS_SAFE=	no
 
-INSTALLATION_DIRS=	bin include lib ${PKGMANDIR}/man1 share/doc/jbig
+INSTALLATION_DIRS=	bin include lib${LIBARCHSUFFIX} ${PKGMANDIR}/man1 share/doc/jbig
 
 do-install:
 	${RUN} \
@@ -29,7 +30,7 @@ do-install:
 	done; \
 	for l in *.la; do \
 		${LIBTOOL} --mode=install ${INSTALL_LIB} "$${l}" \
-			${DESTDIR}${PREFIX}/lib; \
+			${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}; \
 	done; \
 	for t in *.txt; do \
 		${INSTALL_DATA} "$${t}" ${DESTDIR}${PREFIX}/share/doc/jbig; \

@@ -41,7 +41,7 @@ $NetBSD: patch-ai,v 1.3 2009/06/05 11:10:35 wiz Exp $
 +$(TOP)/$(LIB_DIR)/$(LIBNAME): $(OBJECTS) $(MESA_MODULES) $(WINOBJ) Makefile $(TOP)/src/mesa/drivers/dri/Makefile.template
 +	$(LIBTOOL) --mode=link $(CC) -o $(TOP)/$(LIB_DIR)/$(LIBNAME:.so=.la) \
 +	$(OBJECTS:.o=.lo) $(WINOBJ:.o=.lo) $(DRI_LIB_DEPS) \
-+	$(MESA_MODULES:.a=.la) -rpath $(PREFIX)/lib -module -avoid-version
++	$(MESA_MODULES:.a=.la) -rpath $(PREFIX)/lib$(LIBARCHSUFFIX) -module -avoid-version
  
  depend: $(C_SOURCES) $(ASM_SOURCES) $(SYMLINKS)
  	touch depend

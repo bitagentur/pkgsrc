@@ -26,24 +26,24 @@ CONFIGURE_ARGS+=	-no-sql-sqlite
 # kdelibs4 requires openssl support!
 CONFIGURE_ARGS+=	-openssl-linked
 
-INSTALLATION_DIRS=	lib/pkgconfig
+INSTALLATION_DIRS=	lib${LIBARCHSUFFIX}/pkgconfig
 INSTALLATION_DIRS+=	${QTPREFIX}/bin
-INSTALLATION_DIRS+=	${QTPREFIX}/imports/Qt/labs/folderlistmodel
-INSTALLATION_DIRS+=	${QTPREFIX}/imports/Qt/labs/gestures
-INSTALLATION_DIRS+=	${QTPREFIX}/imports/Qt/labs/particles
-INSTALLATION_DIRS+=	${QTPREFIX}/imports/QtWebKit
+INSTALLATION_DIRS+=	${QTPREFIX}/imports${LIBARCHSUFFIX}/Qt/labs/folderlistmodel
+INSTALLATION_DIRS+=	${QTPREFIX}/imports${LIBARCHSUFFIX}/Qt/labs/gestures
+INSTALLATION_DIRS+=	${QTPREFIX}/imports${LIBARCHSUFFIX}/Qt/labs/particles
+INSTALLATION_DIRS+=	${QTPREFIX}/imports${LIBARCHSUFFIX}/QtWebKit
 INSTALLATION_DIRS+=	${QTPREFIX}/include
-INSTALLATION_DIRS+=	${QTPREFIX}/lib
-INSTALLATION_DIRS+=	${QTPREFIX}/plugins/accessible
-INSTALLATION_DIRS+=	${QTPREFIX}/plugins/bearer
-INSTALLATION_DIRS+=	${QTPREFIX}/plugins/codecs
-INSTALLATION_DIRS+=	${QTPREFIX}/plugins/graphicssystems
-INSTALLATION_DIRS+=	${QTPREFIX}/plugins/iconengines
-INSTALLATION_DIRS+=	${QTPREFIX}/plugins/imageformats
+INSTALLATION_DIRS+=	${QTPREFIX}/lib${LIBARCHSUFFIX}
+INSTALLATION_DIRS+=	${QTPREFIX}/plugins${LIBARCHSUFFIX}/accessible
+INSTALLATION_DIRS+=	${QTPREFIX}/plugins${LIBARCHSUFFIX}/bearer
+INSTALLATION_DIRS+=	${QTPREFIX}/plugins${LIBARCHSUFFIX}/codecs
+INSTALLATION_DIRS+=	${QTPREFIX}/plugins${LIBARCHSUFFIX}/graphicssystems
+INSTALLATION_DIRS+=	${QTPREFIX}/plugins${LIBARCHSUFFIX}/iconengines
+INSTALLATION_DIRS+=	${QTPREFIX}/plugins${LIBARCHSUFFIX}/imageformats
 .if ${OPSYS} == "Darwin"
 INSTALLATION_DIRS+=	${QTPREFIX}/qt_menu.nib
 .else
-INSTALLATION_DIRS+=	${QTPREFIX}/plugins/inputmethods
+INSTALLATION_DIRS+=	${QTPREFIX}/plugins${LIBARCHSUFFIX}/inputmethods
 .endif
 
 INSTALL_ENV+=		INSTALL_ROOT=${DESTDIR}
@@ -62,16 +62,16 @@ do-install:
 		${DESTDIR}${QTPREFIX}/bin/
 	${LIBTOOL} --mode=install ${INSTALL_LIB} \
 		${WRKSRC}/imports/Qt/labs/folderlistmodel/libqmlfolderlistmodelplugin.la \
-		${DESTDIR}${QTPREFIX}/imports/Qt/labs/folderlistmodel/
+		${DESTDIR}${QTPREFIX}/imports${LIBARCHSUFFIX}/Qt/labs/folderlistmodel/
 	${LIBTOOL} --mode=install ${INSTALL_LIB} \
 		${WRKSRC}/imports/Qt/labs/gestures/libqmlgesturesplugin.la \
-		${DESTDIR}${QTPREFIX}/imports/Qt/labs/gestures/
+		${DESTDIR}${QTPREFIX}/imports${LIBARCHSUFFIX}/Qt/labs/gestures/
 	${LIBTOOL} --mode=install ${INSTALL_LIB} \
 		${WRKSRC}/imports/Qt/labs/particles/libqmlparticlesplugin.la \
-		${DESTDIR}${QTPREFIX}/imports/Qt/labs/particles/
+		${DESTDIR}${QTPREFIX}/imports${LIBARCHSUFFIX}/Qt/labs/particles/
 	 ${LIBTOOL} --mode=install ${INSTALL_LIB} \
 		${WRKSRC}/imports/QtWebKit/libqmlwebkitplugin.la \
-		${DESTDIR}${QTPREFIX}/imports/QtWebKit/
+		${DESTDIR}${QTPREFIX}/imports${LIBARCHSUFFIX}/QtWebKit/
 .for incl in corelib declarative gui multimedia network opengl qt3support script scripttools sql svg testlib xml xmlpatterns 3rdparty/webkit/Source/WebKit/qt
 	cd ${WRKSRC}/src/${incl} && env ${MAKE_ENV} ${INSTALL_ENV} \
 		${MAKE_PROGRAM} install_flat_headers install_targ_headers install_class_headers
@@ -79,38 +79,38 @@ do-install:
 	cd ${DESTDIR}${PREFIX} && find qt4/include -type f -print > ${WRKDIR}/PLIST
 .for lib in Qt3Support QtCore QtDeclarative QtGui QtMultimedia QtNetwork QtOpenGL QtScript QtScriptTools QtSql QtSvg QtTest QtWebKit QtXml QtXmlPatterns jscore webcore
 	${LIBTOOL} --mode=install ${INSTALL_LIB} ${WRKSRC}/lib/lib${lib}.la \
-		${DESTDIR}${QTPREFIX}/lib/
+		${DESTDIR}${QTPREFIX}/lib${LIBARCHSUFFIX}/
 	sed	-e "s:${WRKSRC}:${QTPREFIX}:g" \
-		-e "s:${QTPREFIX}/lib/lib\\([A-Za-z3]*\\)\\.la:-l\\1:g" \
+		-e "s:${QTPREFIX}/lib${LIBARCHSUFFIX}/lib\\([A-Za-z3]*\\)\\.la:-l\\1:g" \
 		${WRKSRC}/lib/pkgconfig/${lib}.pc > ${WRKDIR}/${lib}.pc
-	${INSTALL_DATA} ${WRKDIR}/${lib}.pc ${DESTDIR}${PREFIX}/lib/pkgconfig/
+	${INSTALL_DATA} ${WRKDIR}/${lib}.pc ${DESTDIR}${PREFIX}/lib${LIBARCHSUFFIX}/pkgconfig/
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/tools/porting/src/q3porting.xml ${DESTDIR}${QTPREFIX}
 .for plug in qtaccessiblecompatwidgets qtaccessiblewidgets
 	${LIBTOOL} --mode=install ${INSTALL_LIB} \
 		${WRKSRC}/plugins/accessible/lib${plug}.la \
-		${DESTDIR}${QTPREFIX}/plugins/accessible/
+		${DESTDIR}${QTPREFIX}/plugins${LIBARCHSUFFIX}/accessible/
 .endfor
 	${LIBTOOL} --mode=install ${INSTALL_LIB} \
 		${WRKSRC}/plugins/bearer/libqgenericbearer.la \
-		${DESTDIR}${QTPREFIX}/plugins/bearer/
+		${DESTDIR}${QTPREFIX}/plugins${LIBARCHSUFFIX}/bearer/
 .for codec in qcncodecs qjpcodecs qkrcodecs qtwcodecs
 	${LIBTOOL} --mode=install ${INSTALL_LIB} \
 		${WRKSRC}/plugins/codecs/lib${codec}.la \
-		${DESTDIR}${QTPREFIX}/plugins/codecs/
+		${DESTDIR}${QTPREFIX}/plugins${LIBARCHSUFFIX}/codecs/
 .endfor
 .for plug in qglgraphicssystem qtracegraphicssystem
 	${LIBTOOL} --mode=install ${INSTALL_LIB} \
 		${WRKSRC}/plugins/graphicssystems/lib${plug}.la \
-		${DESTDIR}${QTPREFIX}/plugins/graphicssystems/
+		${DESTDIR}${QTPREFIX}/plugins${LIBARCHSUFFIX}/graphicssystems/
 .endfor
 	${LIBTOOL} --mode=install ${INSTALL_LIB} \
 		${WRKSRC}/plugins/iconengines/libqsvgicon.la \
-		${DESTDIR}/${QTPREFIX}/plugins/iconengines/
+		${DESTDIR}/${QTPREFIX}/plugins${LIBARCHSUFFIX}/iconengines/
 .for plug in qgif qico qjpeg qsvg qtga
 	${LIBTOOL} --mode=install ${INSTALL_LIB} \
 		${WRKSRC}/plugins/imageformats/lib${plug}.la \
-		${DESTDIR}${QTPREFIX}/plugins/imageformats/
+		${DESTDIR}${QTPREFIX}/plugins${LIBARCHSUFFIX}/imageformats/
 .endfor
 .if ${OPSYS} == "Darwin"
 	${INSTALL_DATA} ${WRKSRC}/src/gui/mac/qt_menu.nib/*.nib \
@@ -118,7 +118,7 @@ do-install:
 .else
 	${LIBTOOL} --mode=install ${INSTALL_LIB} \
 		${WRKSRC}/plugins/inputmethods/libqimsw-multi.la \
-		${DESTDIR}/${QTPREFIX}/plugins/inputmethods/
+		${DESTDIR}/${QTPREFIX}/plugins${LIBARCHSUFFIX}/inputmethods/
 .endif
 
 .if ${OPSYS} != "Darwin"

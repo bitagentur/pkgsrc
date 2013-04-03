@@ -44,6 +44,11 @@ SUBST_STAGE.vars=	pre-configure
 SUBST_FILES.vars=	gcc/Makefile.in
 SUBST_VARS.vars=	GCC_TARGET_MACHINE
 
+SUBST_CLASSES+=		prefix
+SUBST_STAGE.prefix=	pre-configure
+SUBST_FILES.prefix=	gcc/config/sol2-bi.h gcc/config/sol2.h
+SUBST_SED.prefix=	-e "s,@PREFIX@,${PREFIX},g"
+
 .include "../../mk/bsd.prefs.mk"
 
 LANGS=			c
@@ -80,6 +85,11 @@ CONFIGURE_ARGS+=	--disable-bootstrap
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-i386) || !empty(MACHINE_PLATFORM:MLinux-*-i386)
 CONFIGURE_ARGS+=	--with-arch=i486 --with-tune=i486
 .endif
+
+SUBST_CLASSES+=		vars
+SUBST_STAGE.vars=	pre-configure
+SUBST_FILES.vars=	gcc/config/sol2-bi.h gcc/config/sol2.h
+SUBST_VARS.vars=	PREFIX
 
 .include "options.mk"
 

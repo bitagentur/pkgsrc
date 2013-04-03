@@ -16,6 +16,7 @@ COMMENT=	Multiple-image Network Graphics (MNG) reference library
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_TOOLS+=		aclocal autoconf automake
 LIBTOOLIZE=		${LIBTOOL:S/libtool$/libtoolize/}
 

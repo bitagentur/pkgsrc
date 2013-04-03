@@ -8,5 +8,5 @@ post-extract: extract-inplace-gmp
 
 extract-inplace-gmp:
 	(cd ../../devel/gmp && ${MAKE} WRKDIR=${WRKSRC}/.devel.gmp EXTRACT_DIR=${WRKSRC} \
-		WRKSRC='$${EXTRACT_DIR}/$${DISTNAME}' SKIP_DEPENDS=YES fetch patch clean)
+		WRKSRC='$${EXTRACT_DIR}/$${DISTNAME}' SKIP_DEPENDS=YES MULTIARCH=NO fetch patch clean)
 	${MV} ${WRKSRC}/gmp-* ${WRKSRC}/gmp

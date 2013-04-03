@@ -21,6 +21,7 @@ MAKE_JOBS_SAFE=		no
 
 USE_LANGUAGES=		c99 c++
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 USE_TOOLS+=		gmake
 GNU_CONFIGURE=		yes
 MAKE_FILE=		GNUmakefile
@@ -38,6 +39,13 @@ SUBST_SED.pthread=	-e 's/-lpthread/${PTHREAD_LINKFLAGS:Q}/'
 SUBST_SED.pthread+=	-e 's/-L\(.\)libdir/-L\1libdir ${COMPILER_RPATH_FLAG}\1libdir/'
 
 LDFLAGS.OpenBSD+=	${PTHREAD_LINKFLAGS}
+
+SUBST_CLASSES+=		archdir
+SUBST_STAGE.archdir=	pre-configure
+SUBST_MESSAGE.archdir=	Making multi-arch aware
+SUBST_FILES.archdir=	config.mk.in
+SUBST_SED.archdir=	-e '/PROGRAMINST_DIR/s,bin,bin${BINARCHSUFFIX},'
+SUBST_SED.archdir+=	-e '/LIBINST_DIR/s,lib,lib${LIBARCHSUFFIX},'
 
 .include "../../www/curl/buildlink3.mk"
 .include "../../www/libwww/buildlink3.mk"

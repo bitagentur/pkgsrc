@@ -11,6 +11,7 @@ COMMENT=	Implementation of the Sender Policy Framework
 
 GNU_CONFIGURE=	YES
 USE_LIBTOOL=	YES
+USE_MULTIARCH=	lib
 
 CONFLICTS+=	libspf_alt-[0-9]*
 CONFLICTS+=	p5-Mail-SPF-[0-9]*

@@ -13,6 +13,7 @@ LICENSE=	gnu-lgpl-v2
 
 USE_TOOLS+=		pkg-config gmake intltool msgfmt
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 GNU_CONFIGURE=		yes
 
 DEPENDS+=	glib-networking-[0-9]*:../../net/glib-networking

@@ -4,8 +4,17 @@ Fix for unpriviliged build.
 
 http://hg.python.org/cpython/rev/a0f43f4481e0
 
---- Makefile.pre.in.orig	2011-06-11 16:46:26.000000000 +0100
-+++ Makefile.pre.in	2012-03-24 11:02:25.000000000 +0000
+--- Makefile.pre.in.orig	Mon Apr  9 23:07:33 2012
++++ Makefile.pre.in	Thu Aug  9 15:37:08 2012
+@@ -111,7 +111,7 @@
+ LDSHARED=	@LDSHARED@ $(LDFLAGS)
+ BLDSHARED=	@BLDSHARED@ $(LDFLAGS)
+ LDCXXSHARED=	@LDCXXSHARED@
+-DESTSHARED=	$(BINLIBDEST)/lib-dynload
++DESTSHARED=	$(BINLIBDEST)/lib-dynload@LIBARCHSUFFIX@
+ 
+ # Executable suffix (.exe on Windows and Mac OS X)
+ EXE=		@EXEEXT@
 @@ -448,7 +448,7 @@
  
  SRC_GDB_HOOKS=$(srcdir)/Tools/gdb/libpython.py
@@ -15,13 +24,33 @@ http://hg.python.org/cpython/rev/a0f43f4481e0
  
  # This rule is here for OPENSTEP/Rhapsody/MacOSX. It builds a temporary
  # minimal framework (not including the Lib directory and such) in the current
-@@ -829,7 +830,8 @@
- 				(cd $(DESTDIR)$(LIBDIR); $(LN) -sf $(INSTSONAME) $(LDLIBRARY)) \
+@@ -824,12 +824,13 @@
+ 		if test -n "$(DLLLIBRARY)" ; then \
+ 			$(INSTALL_SHARED) $(DLLLIBRARY) $(DESTDIR)$(BINDIR); \
+ 		else \
+-			$(INSTALL_SHARED) $(LDLIBRARY) $(DESTDIR)$(LIBDIR)/$(INSTSONAME); \
++			$(INSTALL_SHARED) $(LDLIBRARY) $(DESTDIR)$(LIBDIR)@LIBARCHSUFFIX@/$(INSTSONAME); \
+ 			if test $(LDLIBRARY) != $(INSTSONAME); then \
+-				(cd $(DESTDIR)$(LIBDIR); $(LN) -sf $(INSTSONAME) $(LDLIBRARY)) \
++				(cd $(DESTDIR)$(LIBDIR)@LIBARCHSUFFIX@; $(LN) -sf $(INSTSONAME) $(LDLIBRARY)) \
  			fi \
  		fi; \
 -	else	true; \
 +	elif test -f $(INSTSONAME); then \
-+		$(INSTALL_SHARED) $(INSTSONAME) $(DESTDIR)$(LIBDIR); \
++		$(INSTALL_SHARED) $(INSTSONAME) $(DESTDIR)$(LIBDIR)@LIBARCHSUFFIX@; \
  	fi
  
  # Install the manual page
+@@ -994,10 +995,10 @@
+ 
+ # Install the library and miscellaneous stuff needed for extending/embedding
+ # This goes into $(exec_prefix)
+-LIBPL=		$(LIBP)/config
++LIBPL=		$(LIBP)/config@LIBARCHSUFFIX@
+ 
+ # pkgconfig directory
+-LIBPC=		$(LIBDIR)/pkgconfig
++LIBPC=		$(LIBDIR)@LIBARCHSUFFIX@/pkgconfig
+ 
+ libainstall:	all python-config
+ 	@for i in $(LIBDIR) $(LIBP) $(LIBPL) $(LIBPC); \

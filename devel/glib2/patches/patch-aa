@@ -10,6 +10,15 @@ $NetBSD: patch-aa,v 1.54 2012/10/06 20:44:05 prlw1 Exp $
  G_MODULE_BROKEN_RTLD_GLOBAL
  G_MODULE_HAVE_DLERROR
  G_MODULE_LDFLAGS
+@@ -5526,7 +5527,7 @@
+ fi
+
+ GLIB_RUNTIME_LIBDIR="$with_runtime_libdir"
+-ABS_GLIB_RUNTIME_LIBDIR="`readlink -f $libdir/$with_runtime_libdir`"
++ABS_GLIB_RUNTIME_LIBDIR=""
+
+
+  if test "x$with_runtime_libdir" != "x"; then
 @@ -21565,6 +21566,8 @@ else
  # ifdef _MSC_VER
  #  include <malloc.h>

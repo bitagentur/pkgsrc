@@ -32,4 +32,14 @@ PKG_HACKS+=		sunpro-visibility
 CONFIGURE_ARGS+=	--disable-visibility
 .endif
 
+# Solaris libelf in 32-bit mode does not support largefile
+#.if ${OBJECT_FMT} == "ELF" && ${OPSYS} == "SunOS" && ${ABI} == 32
+#PKG_HACKS+=		solaris-libelf
+#SUBST_CLASSES+=		libelf
+#SUBST_STAGE.libelf=	pre-build
+#SUBST_MESSAGE.libelf=	Fixing Solaris 32-bit libelf support
+#SUBST_FILES.libelf=	gio/Makefile
+#SUBST_SED.libelf=	-e "/^gresource_CPPFLAGS/s/$$/ -D_FILE_OFFSET_BITS=32/"
+#.endif
+
 .endif

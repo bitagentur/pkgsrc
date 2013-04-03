@@ -10,6 +10,7 @@ COMMENT=	Library for array-oriented data access
 
 USE_LANGUAGES=		c c++ fortran77
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		bin lib
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-f90
 CONFIGURE_ARGS+=	--disable-examples

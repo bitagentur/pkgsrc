@@ -15,5 +15,6 @@ USE_TOOLS+=		gmake
 USE_LANGUAGES=		c c++
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 
 .include "../../mk/bsd.pkg.mk"

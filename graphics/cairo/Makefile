@@ -13,6 +13,7 @@ LICENSE=	gnu-lgpl-v2.1 AND mpl-1.1
 
 USE_LANGUAGES=		c99
 USE_LIBTOOL=		yes
+USE_MULTIARCH=		lib
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		pkg-config
 GNU_CONFIGURE=		yes

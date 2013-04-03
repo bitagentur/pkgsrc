@@ -1,6 +1,6 @@
 @comment $NetBSD: PLIST.Linux,v 1.3 2012/03/08 07:23:39 sbd Exp $
-${PLIST.linux2}lib/python${PY_VER_SUFFIX}/lib-dynload/ossaudiodev.so
-lib/python${PY_VER_SUFFIX}/lib-dynload/spwd.so
+${PLIST.linux2}lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/ossaudiodev.so
+lib/python${PY_VER_SUFFIX}/lib-dynload${LIBARCHSUFFIX}/spwd.so
 ${PLIST.linux2}lib/python${PY_VER_SUFFIX}/plat-${PY_PLATNAME}/CDROM.py
 ${PLIST.linux2}lib/python${PY_VER_SUFFIX}/plat-${PY_PLATNAME}/CDROM.pyc
 ${PLIST.linux2}lib/python${PY_VER_SUFFIX}/plat-${PY_PLATNAME}/CDROM.pyo

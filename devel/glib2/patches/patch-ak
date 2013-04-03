@@ -4,6 +4,15 @@ First chunk: automake-1.13 compat.
 
 --- configure.ac.orig	2013-01-21 15:53:29.000000000 +0000
 +++ configure.ac
+@@ -275,7 +275,7 @@                                                                                                                 
+            [],
+	   [with_runtime_libdir=""])
+ GLIB_RUNTIME_LIBDIR="$with_runtime_libdir"
+-ABS_GLIB_RUNTIME_LIBDIR="`readlink -f $libdir/$with_runtime_libdir`"
++ABS_GLIB_RUNTIME_LIBDIR=""
+ AC_SUBST(GLIB_RUNTIME_LIBDIR)
+ AC_SUBST(ABS_GLIB_RUNTIME_LIBDIR)
+ AM_CONDITIONAL(HAVE_GLIB_RUNTIME_LIBDIR, [test "x$with_runtime_libdir" != "x"])
 @@ -291,7 +291,7 @@ AC_TRY_COMPILE(,[class a { int b; } c;],
  AM_CONDITIONAL(HAVE_CXX, [test "$CXX" != ""])
  AC_LANG_RESTORE

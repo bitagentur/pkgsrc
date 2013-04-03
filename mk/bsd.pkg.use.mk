@@ -90,7 +90,7 @@ BUILD_DEFS+=		KERBEROS
 # LIBTOOL is the publicly-readable variable that should be used by
 #	Makefiles to invoke the proper libtool.
 #
-PKG_LIBTOOL?=		${LOCALBASE}/bin/libtool
+PKG_LIBTOOL?=		${LOCALBASE}/bin${BINARCHSUFFIX}/libtool
 PKG_SHLIBTOOL?=		${LOCALBASE}/bin/shlibtool
 _LIBTOOL?=		${PKG_LIBTOOL}
 _SHLIBTOOL?=		${PKG_SHLIBTOOL}

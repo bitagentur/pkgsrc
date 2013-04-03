@@ -16,6 +16,7 @@ BUILD_DEPENDS+= ${PYPKGPREFIX}-xcbgen>=1.7:../../x11/py-xcbgen
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
+USE_MULTIARCH=	lib
 USE_TOOLS+=	gmake pkg-config
 
 CONFIGURE_ARGS+=	--disable-build-docs	# or needs doxygen

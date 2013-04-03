@@ -31,7 +31,7 @@ $NetBSD: patch-be,v 1.2 2009/07/08 20:00:58 hasso Exp $
 -		$(OSMESA_LIB_DEPS) $(OBJECTS) $(CORE_MESA)
 +	$(LIBTOOL) --mode=link $(CC) \
 +		-o $(TOP)/$(LIB_DIR)/$(OSMESA_LIB_NAME:.so=.la) $(LDFLAGS) \
-+		-rpath $(PREFIX)/lib \
++		-rpath $(PREFIX)/lib$(LIBARCHSUFFIX) \
 +		-version-info $(MESA_MAJOR):$(MESA_MINOR):0 \
 +		$(OSMESA_LIB_DEPS) $(OBJECTS:.o=.lo) $(CORE_MESA)
  
