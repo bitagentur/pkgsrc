@@ -4,7 +4,6 @@ bin/ffprobe
 bin/ffserver
 ${PLIST.tools}bin/cws2fws
 ${PLIST.tools}bin/graph2dot
-${PLIST.tools}bin/lavfi-showfiltfmts
 ${PLIST.tools}bin/pktdumper
 ${PLIST.tools}bin/probetest
 ${PLIST.tools}bin/qt-faststart

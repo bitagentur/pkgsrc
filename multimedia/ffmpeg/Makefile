@@ -24,16 +24,17 @@ CONFIGURE_ARGS+=	--disable-asm
 
 TEST_TARGET=	check
 
-FFTOOLS=	cws2fws graph2dot lavfi-showfiltfmts pktdumper
-FFTOOLS+=	probetest qt-faststart trasher
-
-.include "options.mk"
-
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/doc/*.txt \
 		${DESTDIR}${PREFIX}/share/doc/ffmpeg
 	${INSTALL_DATA} ${WRKSRC}/doc/ffserver.conf \
 		${DESTDIR}${PREFIX}/share/examples/ffmpeg
+
+.include "options.mk"
+
+FFTOOLS=	cws2fws graph2dot pktdumper
+FFTOOLS+=	probetest qt-faststart trasher
+
 .if !empty(PKG_OPTIONS:Mtools)
 .  for tool in ${FFTOOLS}
 	${INSTALL_PROGRAM} ${WRKSRC}/tools/${tool} ${DESTDIR}${PREFIX}/bin
