@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1.1.1 2013/03/08 07:09:04 asau Exp $
+# $NetBSD: Makefile,v 1.3 2013/04/07 20:38:36 asau Exp $
 
 DISTNAME=	libint-2.0.0-stable
 PKGNAME=	libint-2.0.0
