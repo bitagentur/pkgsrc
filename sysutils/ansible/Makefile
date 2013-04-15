@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2013/02/27 12:32:06 hubertf Exp $
+# $NetBSD: Makefile,v 1.6 2013/04/06 11:39:26 rodent Exp $
 #
 
 DISTNAME=	ansible-1.0
@@ -8,7 +8,7 @@ MASTER_SITES=	http://ansible.cc/releases/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://ansible.cc/
-COMMENT=	SSH-based configuration management, deployment, and task execution system
+COMMENT=	SSH-based configuration management, deployment, and task execution
 LICENSE=	gnu-gpl-v3
 
 EGDIR=		${PREFIX}/share/examples/ansible
@@ -59,13 +59,13 @@ pre-install:
 
 post-install:
 .for f in ${MANPAGES}
-	${INSTALL_MAN} ${WRKSRC}/docs/man/man1/$f \
+	${INSTALL_MAN} ${WRKSRC}/docs/man/man1/${f} \
 	    ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/
 .endfor
 	${INSTALL_MAN} ${WRKSRC}/docs/man/man3/* \
 	    ${DESTDIR}${PREFIX}/${PKGMANDIR}/man3/
 .for f in ansible.cfg hosts
-	${INSTALL_DATA} ${WRKSRC}/examples/$f \
+	${INSTALL_DATA} ${WRKSRC}/examples/${f} \
 	    ${DESTDIR}/${EGDIR}
 .endfor
 	${INSTALL_DATA_DIR} ${DESTDIR}/${EGDIR}/playbooks
@@ -73,9 +73,9 @@ post-install:
 		${INSTALL_DATA} $$f ${DESTDIR}/${EGDIR}/playbooks; \
 	done
 .for f in filter_plugins handlers tasks templates vars
-	${INSTALL_DATA_DIR} ${DESTDIR}/${EGDIR}/playbooks/$f
-	for g in ${WRKSRC}/examples/playbooks/$f/*; do \
-	    ${INSTALL_DATA} $$g ${DESTDIR}/${EGDIR}/playbooks/$f; \
+	${INSTALL_DATA_DIR} ${DESTDIR}/${EGDIR}/playbooks/${f}
+	for g in ${WRKSRC}/examples/playbooks/${f}/*; do \
+	    ${INSTALL_DATA} $$g ${DESTDIR}/${EGDIR}/playbooks/${f}; \
 	done
 .endfor
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.26 2013/02/16 21:20:21 asau Exp $
+# $NetBSD: Makefile,v 1.28 2013/04/06 14:09:33 rodent Exp $
 
 PKGNAME=	racket-5.3.3
 DISTNAME=	$(PKGNAME_NOREV)-src-unix
@@ -9,7 +9,7 @@ MASTER_SITES_PLT=	http://download.racket-lang.org/installers/$(PKGVERSION_NOREV)
 		http://mirror.informatik.uni-tuebingen.de/mirror/racket/$(PKGVERSION_NOREV)/ \
 		ftp://infogroep.be/pub/racket/installers/$(PKGVERSION_NOREV)/ \
 		http://russell.cs.bilgi.edu.tr/racket-installers/$(PKGVERSION_NOREV)/
-MASTER_SITES=	$(MASTER_SITES_PLT:=racket/)
+MASTER_SITES=	${MASTER_SITES_PLT:=racket/}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	asau@inbox.ru
@@ -43,7 +43,7 @@ CHECK_INTERPRETER_SKIP=	lib/racket/collects/meta/build/sitemap/setup.py \
 CHECK_INTERPRETER_SKIP+=	lib/racket/collects/tests/jpr/mon-script.ss
 
 .for f in use-c-printf.rkt use-crypt.rkt use-esd.rkt use-magick.rkt use-sndfile.rkt use-tcl.rkt use-xmmsctrl.rkt use-xosd.rkt
-REPLACE_RACKET+=	collects/ffi/examples/$f
+REPLACE_RACKET+=	collects/ffi/examples/${f}
 .endfor
 
 REPLACE_INTERPRETER+=	racket

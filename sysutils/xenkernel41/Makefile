@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.17 2013/01/17 19:37:54 drochner Exp $
+# $NetBSD: Makefile,v 1.19 2013/04/11 19:57:51 joerg Exp $
 #
 
 VERSION=	4.1.4
 DISTNAME=	xen-${VERSION}
 PKGNAME=	xenkernel41-${VERSION}
+PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://bits.xensource.com/oss-xen/release/${VERSION}/
-EXTRACT_SUFX=	.tar.gz
 
 MAINTAINER=	cegger@NetBSD.org
 HOMEPAGE=	http://xen.org/
@@ -32,6 +32,14 @@ INSTALLATION_DIRS=	xen41-kernel
 XENKERNELDIR=		${PREFIX}/${INSTALLATION_DIRS}
 
 MESSAGE_SUBST+=		XENKERNELDIR=${XENKERNELDIR:Q}
+
+.include "../../mk/compiler.mk"
+.if !empty(PKGSRC_COMPILER:Mclang)
+EXTRA_CFLAGS+=	-Qunused-arguments -no-integrated-as -Wno-error=format \
+		-Wno-error=parentheses-equality -Wno-error=enum-conversion
+.endif
+
+MAKE_ENV+=	EXTRA_CFLAGS=${EXTRA_CFLAGS:Q}
 
 do-build:
 	cd ${WRKSRC}/xen && ${BUILD_MAKE_CMD} debug=n build
