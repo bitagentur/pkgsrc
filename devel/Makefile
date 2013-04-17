@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1728 2013/04/12 14:38:33 schmonz Exp $
+# $NetBSD: Makefile,v 1.1731 2013/04/17 00:52:07 rodent Exp $
 #
 
 COMMENT=	Development utilities
@@ -527,6 +527,7 @@ SUBDIR+=	p5-App-CLI
 SUBDIR+=	p5-App-Cache
 SUBDIR+=	p5-App-Cmd
 SUBDIR+=	p5-App-FatPacker
+SUBDIR+=	p5-App-Prove-Plugin-ProgressBar
 SUBDIR+=	p5-App-cpanminus
 SUBDIR+=	p5-App-cpanoutdated
 SUBDIR+=	p5-App-perlbrew
@@ -1137,6 +1138,7 @@ SUBDIR+=	p5-Term-Prompt
 SUBDIR+=	p5-Term-ReadKey
 SUBDIR+=	p5-Term-ReadLine
 SUBDIR+=	p5-Term-ReadLine-Perl
+SUBDIR+=	p5-Term-ReadLine-TTYtter
 SUBDIR+=	p5-Term-ReadPassword
 SUBDIR+=	p5-Term-Screen
 SUBDIR+=	p5-Term-Shell
@@ -1621,6 +1623,7 @@ SUBDIR+=	treecc
 SUBDIR+=	trio
 SUBDIR+=	tvision
 SUBDIR+=	ucl
+SUBDIR+=	ucommon
 SUBDIR+=	ucpp
 SUBDIR+=	unidiff
 SUBDIR+=	uno
