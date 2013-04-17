@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.428 2013/04/04 21:08:25 adam Exp $
+# $NetBSD: Makefile,v 1.430 2013/04/13 13:17:35 jaapb Exp $
 
 COMMENT=	Databases
 
@@ -97,6 +97,7 @@ SUBDIR+=	oraedit
 SUBDIR+=	p5-AddressBook
 SUBDIR+=	p5-AnyEvent-BDB
 SUBDIR+=	p5-Apache-DBI
+SUBDIR+=	p5-App-Sqitch
 SUBDIR+=	p5-BDB
 SUBDIR+=	p5-BerkeleyDB
 SUBDIR+=	p5-CDB_File
@@ -411,6 +412,7 @@ SUBDIR+=	tinycdb
 SUBDIR+=	tokyocabinet
 SUBDIR+=	tokyotyrant
 SUBDIR+=	unixodbc
+SUBDIR+=	virtuoso
 SUBDIR+=	xsqlmenu
 SUBDIR+=	yap2lc
 SUBDIR+=	yasql

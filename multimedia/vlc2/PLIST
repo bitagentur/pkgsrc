@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.7 2013/03/18 09:18:16 sbd Exp $
+@comment $NetBSD: PLIST,v 1.9 2013/04/14 22:10:23 cheusov Exp $
 bin/cvlc
 ${PLIST.x11}bin/qvlc
 bin/rvlc
@@ -53,6 +53,7 @@ include/vlc/plugins/vlc_image.h
 include/vlc/plugins/vlc_inhibit.h
 include/vlc/plugins/vlc_input.h
 include/vlc/plugins/vlc_input_item.h
+include/vlc/plugins/vlc_keys.h
 include/vlc/plugins/vlc_main.h
 include/vlc/plugins/vlc_md5.h
 include/vlc/plugins/vlc_media_library.h
@@ -191,6 +192,7 @@ lib/vlc/plugins/control/libdummy_plugin.la
 lib/vlc/plugins/control/libgestures_plugin.la
 ${PLIST.x11}lib/vlc/plugins/control/libglobalhotkeys_plugin.la
 lib/vlc/plugins/control/libhotkeys_plugin.la
+${PLIST.lirc}lib/vlc/plugins/control/liblirc_plugin.la
 lib/vlc/plugins/control/libmotion_plugin.la
 lib/vlc/plugins/control/libnetsync_plugin.la
 lib/vlc/plugins/control/liboldrc_plugin.la
@@ -407,6 +409,7 @@ share/kde/apps/solid/actions/vlc-openvcd.desktop
 share/locale/ach/LC_MESSAGES/vlc.mo
 share/locale/af/LC_MESSAGES/vlc.mo
 share/locale/am/LC_MESSAGES/vlc.mo
+share/locale/an/LC_MESSAGES/vlc.mo
 share/locale/ar/LC_MESSAGES/vlc.mo
 share/locale/ast/LC_MESSAGES/vlc.mo
 share/locale/be/LC_MESSAGES/vlc.mo
@@ -451,7 +454,6 @@ share/locale/kk/LC_MESSAGES/vlc.mo
 share/locale/km/LC_MESSAGES/vlc.mo
 share/locale/kmr/LC_MESSAGES/vlc.mo
 share/locale/ko/LC_MESSAGES/vlc.mo
-share/locale/ku/LC_MESSAGES/vlc.mo
 share/locale/lg/LC_MESSAGES/vlc.mo
 share/locale/lt/LC_MESSAGES/vlc.mo
 share/locale/lv/LC_MESSAGES/vlc.mo
