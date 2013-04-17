@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.959 2013/03/24 15:19:54 drochner Exp $
+# $NetBSD: Makefile,v 1.961 2013/04/17 00:57:03 rodent Exp $
 #
 
 COMMENT=	Networking tools
@@ -59,6 +59,7 @@ SUBDIR+=	bug-buddy
 SUBDIR+=	bwping
 SUBDIR+=	cacti
 SUBDIR+=	calypso
+SUBDIR+=	ccrtp
 SUBDIR+=	cdpd
 SUBDIR+=	cftp
 SUBDIR+=	chimera
@@ -173,6 +174,7 @@ SUBDIR+=	gst-plugins0.10-rtmp
 SUBDIR+=	gst-plugins0.10-soup
 SUBDIR+=	gst-plugins1-mms
 SUBDIR+=	gst-plugins1-rtmp
+SUBDIR+=	gst-plugins1-soup
 SUBDIR+=	gt-itm
 SUBDIR+=	gtk-gnutella
 SUBDIR+=	gtk-vnc
@@ -264,6 +266,7 @@ SUBDIR+=	libtorrent
 SUBDIR+=	libtrace
 SUBDIR+=	libupnp
 SUBDIR+=	libvncserver
+SUBDIR+=	libzrtpcpp
 SUBDIR+=	linc
 SUBDIR+=	llnlxdir
 SUBDIR+=	llnlxftp

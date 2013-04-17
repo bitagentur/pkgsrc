@@ -2,7 +2,7 @@
 # derrived from /etc/rc_d/os.sh
 
 # RCSid:
-#	$Id: machine.sh,v 1.5 2013/02/09 12:57:35 obache Exp $
+#	$Id: machine.sh,v 1.7 2013/04/06 02:49:57 obache Exp $
 #
 #	@(#) Copyright (c) 1994-2002 Simon J. Gerraty
 #
@@ -82,9 +82,10 @@ Linux)
 	esac
         ;;
 CYGWIN_*)
-	OS=CYGWIN
-	MACHINE=i386
-	MACHINE_ARCH=i386
+	OS=Cygwin
+	case "$machine" in
+	i?86) MACHINE_ARCH=i386;;
+	esac
 	;;
 esac
 

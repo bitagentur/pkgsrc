@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.2 2012/12/18 12:31:31 jperkin Exp $
+# $NetBSD: Makefile,v 1.4 2013/04/08 16:57:46 drochner Exp $
 #
 .include "Makefile.common"
 
 #CONFIGURE_ARGS+= --disable-silent-rules
 
-COMMENT+=		base plugins
+COMMENT+=	Base plugins
 
-USE_TOOLS+=		perl:run
+USE_TOOLS+=	perl:run
 
 PKGCONFIG_OVERRIDE+=	pkgconfig/*.pc.in
 
@@ -23,5 +23,6 @@ CFLAGS.SunOS+=		-DHAVE_FIONREAD_IN_SYS_FILIO=1
 # soft dependency only, .pc file not needed
 #.include "../../textproc/iso-codes/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
+.include "../../devel/gobject-introspection/buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"
