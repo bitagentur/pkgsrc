@@ -58,7 +58,7 @@ date '+BUILD_END_ISO=%Y-%m-%d %H:%M' >> ${loc}/status
 
 echo "Building pkg_summary..."
 cd ${packages}/All
-sed 's/$/.tgz/' < ${loc}/success | sort | xargs ${pkg_info} -X | ${gzip} -c > pkg_summary.gz
+${packages_script} ${loc} pkgonly | sort | xargs ${pkg_info} -X | ${gzip} -c > pkg_summary.gz
 ${gzip} -dc < pkg_summary.gz | ${bzip2} -c > pkg_summary.bz2
 
 if [ "${checksum_packages}" != "no" ] && \
