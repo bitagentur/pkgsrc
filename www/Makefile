@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.961 2013/04/01 17:41:16 kleink Exp $
+# $NetBSD: Makefile,v 1.965 2013/04/21 12:29:20 ryoon Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -235,6 +235,7 @@ SUBDIR+=	p5-Apache-DBILogConfig
 SUBDIR+=	p5-Apache-DBILogger
 SUBDIR+=	p5-Apache-Filter
 SUBDIR+=	p5-Apache-Gallery
+SUBDIR+=	p5-Apache-LogFormat-Compiler
 SUBDIR+=	p5-Apache-Reload
 SUBDIR+=	p5-Apache-SSI
 SUBDIR+=	p5-Apache-Session
@@ -337,10 +338,12 @@ SUBDIR+=	p5-HTML-Format
 SUBDIR+=	p5-HTML-LinkExtractor
 SUBDIR+=	p5-HTML-Lint
 SUBDIR+=	p5-HTML-Mason
+SUBDIR+=	p5-HTML-Mason-PSGIHandler
 SUBDIR+=	p5-HTML-Parser
 SUBDIR+=	p5-HTML-PrettyPrinter
 SUBDIR+=	p5-HTML-Prototype
 SUBDIR+=	p5-HTML-Prototype-Useful
+SUBDIR+=	p5-HTML-Quoted
 SUBDIR+=	p5-HTML-RewriteAttributes
 SUBDIR+=	p5-HTML-Scrubber
 SUBDIR+=	p5-HTML-Selector-XPath
@@ -452,6 +455,7 @@ SUBDIR+=	p5-Plack-Middleware-Header
 SUBDIR+=	p5-Plack-Middleware-JSConcat
 SUBDIR+=	p5-Plack-Middleware-ReverseProxy
 SUBDIR+=	p5-Plack-Middleware-Session
+SUBDIR+=	p5-Plack-Middleware-Test-StashWarnings
 SUBDIR+=	p5-Plack-Test-ExternalServer
 SUBDIR+=	p5-Pod-POM-Web
 SUBDIR+=	p5-Reaction

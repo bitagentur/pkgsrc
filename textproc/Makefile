@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.720 2013/04/13 12:54:15 rodent Exp $
+# $NetBSD: Makefile,v 1.726 2013/04/25 03:50:20 jnemeth Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -250,20 +250,23 @@ SUBDIR+=	isearch
 SUBDIR+=	iso-codes
 SUBDIR+=	iso12083
 SUBDIR+=	iso8879
-SUBDIR+=	ispell-base
-SUBDIR+=	ispell-british
-SUBDIR+=	ispell-catalan
+SUBDIR+=	ispell
+SUBDIR+=	ispell-ca
+SUBDIR+=	ispell-de
 SUBDIR+=	ispell-emacs
-SUBDIR+=	ispell-francais
-SUBDIR+=	ispell-gaeilge
-SUBDIR+=	ispell-german
-SUBDIR+=	ispell-polski
-SUBDIR+=	ispell-romanian
-SUBDIR+=	ispell-russian
-SUBDIR+=	ispell-russian-io
-SUBDIR+=	ispell-slovak
-SUBDIR+=	ispell-spanish
-SUBDIR+=	ispell-svenska
+SUBDIR+=	ispell-en_GB
+SUBDIR+=	ispell-es
+SUBDIR+=	ispell-fr
+SUBDIR+=	ispell-ga
+SUBDIR+=	ispell-gl
+SUBDIR+=	ispell-ku
+SUBDIR+=	ispell-lt
+SUBDIR+=	ispell-pl
+SUBDIR+=	ispell-ro
+SUBDIR+=	ispell-ru
+SUBDIR+=	ispell-ru-io
+SUBDIR+=	ispell-sk
+SUBDIR+=	ispell-sv
 SUBDIR+=	itex2MML
 SUBDIR+=	itstool
 SUBDIR+=	ja-grep
@@ -671,6 +674,7 @@ SUBDIR+=	ruby-simple-rss
 SUBDIR+=	ruby-stringex
 SUBDIR+=	ruby-suikyo
 SUBDIR+=	ruby-syntax
+SUBDIR+=	ruby-text
 SUBDIR+=	ruby-textpow
 SUBDIR+=	ruby-tilt
 SUBDIR+=	ruby-treetop
