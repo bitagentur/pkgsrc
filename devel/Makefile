@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1731 2013/04/17 00:52:07 rodent Exp $
+# $NetBSD: Makefile,v 1.1737 2013/04/25 09:15:47 jperkin Exp $
 #
 
 COMMENT=	Development utilities
@@ -132,6 +132,7 @@ SUBDIR+=	ctemplate
 SUBDIR+=	cunit
 SUBDIR+=	cut
 SUBDIR+=	cutter
+SUBDIR+=	cvs-fast-export
 SUBDIR+=	cvs2cl
 SUBDIR+=	cvs2html
 SUBDIR+=	cvs2svn
@@ -293,6 +294,7 @@ SUBDIR+=	javacc
 SUBDIR+=	javadeps
 SUBDIR+=	jenkins
 SUBDIR+=	jflex
+SUBDIR+=	jq
 SUBDIR+=	js2-mode
 SUBDIR+=	js_of_ocaml
 SUBDIR+=	kdbg
@@ -883,6 +885,7 @@ SUBDIR+=	p5-Log-Dispatch-Array
 SUBDIR+=	p5-Log-Dispatch-Config
 SUBDIR+=	p5-Log-Dispatch-DBI
 SUBDIR+=	p5-Log-Dispatch-FileRotate
+SUBDIR+=	p5-Log-Dispatch-Perl
 SUBDIR+=	p5-Log-Dispatchouli
 SUBDIR+=	p5-Log-Handler
 SUBDIR+=	p5-Log-Log4perl
@@ -1053,6 +1056,7 @@ SUBDIR+=	p5-PerlIO-gzip
 SUBDIR+=	p5-PerlIO-via-Bzip2
 SUBDIR+=	p5-PerlIO-via-dynamic
 SUBDIR+=	p5-PerlIO-via-symlink
+SUBDIR+=	p5-Pod-Usage
 SUBDIR+=	p5-Probe-Perl
 SUBDIR+=	p5-Proc-Background
 SUBDIR+=	p5-Proc-Daemon
@@ -1375,6 +1379,7 @@ SUBDIR+=	py-ordereddict
 SUBDIR+=	py-pep8
 SUBDIR+=	py-pexpect
 SUBDIR+=	py-pip
+SUBDIR+=	py-polib
 SUBDIR+=	py-pqueue
 SUBDIR+=	py-pyev
 SUBDIR+=	py-pysvn
@@ -1424,6 +1429,7 @@ SUBDIR+=	rsltc
 SUBDIR+=	rt-mysql
 SUBDIR+=	rt-pgsql
 SUBDIR+=	rt3
+SUBDIR+=	rt4
 SUBDIR+=	rubigen
 SUBDIR+=	ruby-SDL
 SUBDIR+=	ruby-abstract

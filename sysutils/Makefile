@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.566 2013/03/06 12:38:41 obache Exp $
+# $NetBSD: Makefile,v 1.571 2013/04/22 09:40:33 imil Exp $
 #
 
 COMMENT=	System utilities
@@ -63,6 +63,7 @@ SUBDIR+=	cpogm
 SUBDIR+=	cpuburn
 SUBDIR+=	cpuid
 SUBDIR+=	crashme
+SUBDIR+=	cuisine
 SUBDIR+=	cvsreport
 SUBDIR+=	daemond
 SUBDIR+=	daemontools
@@ -101,6 +102,7 @@ SUBDIR+=	easydiskpasswd
 SUBDIR+=	edbus
 SUBDIR+=	efreet
 SUBDIR+=	eggdbus
+SUBDIR+=	entr
 SUBDIR+=	estd
 SUBDIR+=	etcmanage
 SUBDIR+=	etcutils
@@ -255,6 +257,7 @@ SUBDIR+=	libgksu
 SUBDIR+=	libgtop
 SUBDIR+=	libirman
 SUBDIR+=	libnotify
+SUBDIR+=	libnotify07
 SUBDIR+=	libol
 SUBDIR+=	liboobs
 SUBDIR+=	libpciaccess
@@ -283,6 +286,7 @@ SUBDIR+=	mkmemstick
 SUBDIR+=	mksunbootcd
 SUBDIR+=	mktemp
 SUBDIR+=	monit
+SUBDIR+=	monitoring
 SUBDIR+=	mrsync
 SUBDIR+=	mtools
 SUBDIR+=	mtoolsfm
@@ -329,6 +333,7 @@ SUBDIR+=	p5-Sys-CpuLoad
 SUBDIR+=	p5-Sys-Filesystem
 SUBDIR+=	p5-Sys-Hostname-Long
 SUBDIR+=	p5-Sys-SigAction
+SUBDIR+=	p5-Sys-Syslog
 SUBDIR+=	p5-Sys-Utmp
 SUBDIR+=	p5-UPS-Nut
 SUBDIR+=	p5-Unix-ConfigFile
