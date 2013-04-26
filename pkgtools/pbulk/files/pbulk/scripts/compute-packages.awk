@@ -32,6 +32,7 @@
 
 BEGIN {
 	meta_dir = ARGV[1]
+	output_format = ARGV[2]
 	success_file = meta_dir "/success"
 	presolve_file = meta_dir "/presolve"
 
@@ -67,6 +68,11 @@ BEGIN {
 		# skip restricted packages
 		if (pkg in restricted)
 			continue;
+		# output format suitable for pkg_summary generation
+		if (output_format == "pkgonly") {
+			print pkg ".tgz"
+			continue
+		}
 		# build category/file list
 		split(categories[pkg], cats, "[ \t]+")
 		cats[0] = "All"
