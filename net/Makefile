@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.961 2013/04/17 00:57:03 rodent Exp $
+# $NetBSD: Makefile,v 1.964 2013/04/22 17:28:42 imil Exp $
 #
 
 COMMENT=	Networking tools
@@ -450,6 +450,8 @@ SUBDIR+=	p5-RADIUS
 SUBDIR+=	p5-RPC-XML
 SUBDIR+=	p5-RT-Client-REST
 SUBDIR+=	p5-RadiusPerl
+SUBDIR+=	p5-Regexp-Common-net-CIDR
+SUBDIR+=	p5-Regexp-IPv6
 SUBDIR+=	p5-SNMP-Info
 SUBDIR+=	p5-SNMP-MIB-Compiler
 SUBDIR+=	p5-SNMP_Session
@@ -466,6 +468,7 @@ SUBDIR+=	p5-gcap
 SUBDIR+=	p5-grake
 SUBDIR+=	p5-umph
 SUBDIR+=	packit
+SUBDIR+=	paris-traceroute
 SUBDIR+=	parpd
 SUBDIR+=	partysip
 SUBDIR+=	pchar

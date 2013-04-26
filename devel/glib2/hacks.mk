@@ -1,4 +1,4 @@
-# $NetBSD: hacks.mk,v 1.9 2013/03/18 14:01:24 jperkin Exp $
+# $NetBSD: hacks.mk,v 1.10 2013/04/20 09:17:32 obache Exp $
 
 .if !defined(GLIB2_HACKS_MK)
 GLIB2_HACKS_MK=	# defined
@@ -32,14 +32,13 @@ PKG_HACKS+=		sunpro-visibility
 CONFIGURE_ARGS+=	--disable-visibility
 .endif
 
-# Solaris libelf in 32-bit mode does not support largefile
-#.if ${OBJECT_FMT} == "ELF" && ${OPSYS} == "SunOS" && ${ABI} == 32
-#PKG_HACKS+=		solaris-libelf
-#SUBST_CLASSES+=		libelf
-#SUBST_STAGE.libelf=	pre-build
-#SUBST_MESSAGE.libelf=	Fixing Solaris 32-bit libelf support
-#SUBST_FILES.libelf=	gio/Makefile
-#SUBST_SED.libelf=	-e "/^gresource_CPPFLAGS/s/$$/ -D_FILE_OFFSET_BITS=32/"
-#.endif
+#
+# GLib2>=2.36 depends on builtin functions which enabled with i486 and
+# later with GCC.
+#
+.if !empty(MACHINE_PLATFORM:MNetBSD-[0-5]*-i386)
+GNU_ARCH.i386=		i486
+CFLAGS+=		-march=i486
+.endif
 
 .endif
