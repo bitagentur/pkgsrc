@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2013/04/24 11:15:46 rodent Exp $
+# $NetBSD: Makefile,v 1.4 2013/04/29 16:11:11 dholland Exp $
 #
 
 DISTNAME=	rom-spell
@@ -13,7 +13,11 @@ COMMENT=	Romanian dictionary for ispell
 CONFLICTS+=	ispell-romanian-[0-9]*
 DEPENDS+=	ispell>=3.1.20:../../textproc/ispell
 
-DIST_SUBDIR=	${PKGNAME_NOREV}
+# Keep the old DIST_SUBDIR even though the pkgsrc package name was
+# changed, to avoid pointless proliferation of copies. Set this back
+# to use ${PKGNAME_NOREV} the next time the distfile changes.
+#DIST_SUBDIR=	${PKGNAME_NOREV}
+DIST_SUBDIR=	ispell-romanian-20031216
 
 INSTALLATION_DIRS=	lib
 

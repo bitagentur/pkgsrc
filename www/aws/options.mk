@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.4 2012/07/08 20:14:28 marino Exp $
+# $NetBSD: options.mk,v 1.6 2013/04/27 13:02:48 marino Exp $
 
 
 # xmlada is built-in (not optional) due to gprbuild dependency
@@ -17,7 +17,7 @@ PKG_SUGGESTED_OPTIONS=	ssl
 .include "../../mk/bsd.options.mk"
 
 CONFIGURE_ARGS+=	GCC=ada
-CONFIGURE_ARGS+=	PROCESSORS=1
+CONFIGURE_ARGS+=	PROCESSORS=${MAKE_JOBS}
 CONFIGURE_ARGS+=	PYTHON=python${PYVERSSUFFIX}
 CONFIGURE_ARGS+=	XMLADA=true
 CONFIGURE_ARGS+=	prefix=${PREFIX}
@@ -58,7 +58,7 @@ CONFIGURE_ARGS+= SOCKET=openssl
 
 .if !empty(PKG_OPTIONS:Mldap)
 CONFIGURE_ARGS+= LDAP=true
-DEPENDS+= openldap>=2.4:../../databases/openldap
+.include "../../databases/openldap-client/buildlink3.mk"
 .endif
 
 ####################
