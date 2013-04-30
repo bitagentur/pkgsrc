@@ -16,7 +16,7 @@ BUILTIN_FIND_FILES.H_DL=	/usr/include/dlfcn.h			\
 ###
 .if !defined(IS_BUILTIN.dl)
 IS_BUILTIN.dl=	no
-.  if empty(H_DL:M${LOCALBASE}/*) && exists(${H_DL})
+.  if exists(${H_DL})
 IS_BUILTIN.dl=	yes
 .  endif
 .endif
