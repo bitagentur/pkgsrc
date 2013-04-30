@@ -1,12 +1,11 @@
-# $NetBSD: Makefile,v 1.6 2012/10/28 06:30:10 asau Exp $
+# $NetBSD: Makefile,v 1.8 2013/04/27 13:02:48 marino Exp $
 #
 
 DISTNAME=	aws-${AWS_VERSION}
 PKGNAME=	aws-demos-${AWS_VERSION}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	www
-MASTER_SITES=	http://downloads.dragonlace.net/src/ \
-		http://dragonlace.mirrors.ada.cx/src/
+MASTER_SITES=	http://downloads.dragonlace.net/src/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	draco@marino.st
@@ -27,18 +26,20 @@ CONFIGURE_ARGS+=	prefix=${PREFIX}
 
 MAKE_ENV+=	ADA_PROJECT_PATH=${PREFIX}/lib/gnat
 
-DEMO_DIRS+=	agent
+SUBST_CLASSES+= 	lpath
+SUBST_STAGE.lpath=	post-patch
+SUBST_MESSAGE.lpath=	Add library path for ldap
+SUBST_FILES.lpath=	demos/test_ldap/test_ldap.gpr
+SUBST_SED.lpath=	-e 's|@PREFIX@|${PREFIX}|g'
+
 DEMO_DIRS+=	auth
 DEMO_DIRS+=	com
 DEMO_DIRS+=	dispatch
 DEMO_DIRS+=	hello_world
-DEMO_DIRS+=	hello_wsdl
 DEMO_DIRS+=	hotplug
-DEMO_DIRS+=	interoplab
 DEMO_DIRS+=	jabber_demo
 DEMO_DIRS+=	multiple_sessions
 DEMO_DIRS+=	res_demo
-DEMO_DIRS+=	runme
 DEMO_DIRS+=	soap_demo
 DEMO_DIRS+=	soap_disp
 DEMO_DIRS+=	soap_vs
@@ -54,16 +55,31 @@ DEMO_DIRS+=	web_mail
 DEMO_DIRS+=	wps
 DEMO_DIRS+=	ws
 DEMO_DIRS+=	zdemo
-# untested
-#PLIST_VARS+=	ldap
-#pkgbase := aws
-#.include "../../mk/pkg-build-options.mk"
-#.if !empty(PKG_BUILD_OPTIONS.aws:Mldap)
-#DEMO_DIRS+=	test_ldap
-#PLIST.ldap=	yes
-#.endif
+
+# These don't build, fail finding "aws.ini"
+#DEMO_DIRS+=	interoplab
+#DEMO_DIRS+=	hello_wsdl
+
+PLIST_VARS+=	ldap ssl
+BUILT_AWS !=	pkg_info -Q PKG_OPTIONS aws 2>/dev/null || echo
+
+.if !empty(BUILT_AWS:Mldap)
+.include "../../databases/openldap-client/buildlink3.mk"
+CONFIGURE_ARGS+=	LDAP=true
+DEMO_DIRS+=		test_ldap
+PLIST.ldap=		yes
+.endif
+
+.if !empty(BUILT_AWS:Mssl)
+.include "../../security/openssl/buildlink3.mk"
+CONFIGURE_ARGS+=	SOCKET=openssl
+DEMO_DIRS+=		agent
+DEMO_DIRS+=		runme
+PLIST.ssl=		yes
+.endif
 
 do-configure:
+	${MKDIR} ${WRKSRC}/.build/native/debug/static/obj
 	cd ${WRKSRC} && ${GMAKE} setup ${CONFIGURE_ARGS}
 
 do-build:
