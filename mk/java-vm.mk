@@ -138,7 +138,9 @@ _ONLY_FOR_PLATFORMS.sun-jdk6= \
 _ONLY_FOR_PLATFORMS.openjdk7= \
 	DragonFly-*-* \
 	NetBSD-[4-9]*-i386 \
-	NetBSD-[5-9]*-x86_64
+	NetBSD-[5-9]*-x86_64 \
+	SunOS-5.11-i386 \
+	SunOS-5.11-x86_64
 _ONLY_FOR_PLATFORMS.openjdk7-bin= \
 	NetBSD-[5-9]*-i386 \
 	NetBSD-[5-9]*-x86_64
