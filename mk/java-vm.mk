@@ -104,7 +104,7 @@ _PKG_JVM_DEFAULT?=	sun-jdk6
 _PKG_JVM_DEFAULT?=	sun-jdk6
 .  elif !empty(MACHINE_PLATFORM:MSunOS-5.11-i386) || \
         !empty(MACHINE_PLATFORM:MSunOS-5.11-x86_64)
-_PKG_JVM_DEFAULT?=	sun-jdk6
+_PKG_JVM_DEFAULT?=	openjdk7
 .  elif !empty(MACHINE_PLATFORM:MDragonFly-*-*)
 _PKG_JVM_DEFAULT?=	openjdk7
 .  else
@@ -266,7 +266,7 @@ _JDK_PKGSRCDIR=		../../lang/kaffe
 _JRE_PKGSRCDIR=		${_JDK_PKGSRCDIR}
 _JAVA_HOME_DEFAULT=	${LOCALBASE}/java/kaffe
 .elif ${_PKG_JVM} == "openjdk7"
-_JDK_PKGSRCDIR=		../../lang/openjdk7
+_JDK_PKGSRCDIR=		../../joyent/openjdk7
 _JRE_PKGSRCDIR=		${_JDK_PKGSRCDIR}
 _JAVA_HOME_DEFAULT=	${LOCALBASE}/java/openjdk7
 .elif ${_PKG_JVM} == "openjdk7-bin"
